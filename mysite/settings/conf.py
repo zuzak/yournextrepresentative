@@ -194,6 +194,7 @@ def get_settings(conf_file_leafname, election_app=None, tests=False):
             'rest_framework',
             'rest_framework.authtoken',
             'images',
+            'haystack',
             'elections',
             'popolo',
             election_app_fully_qualified,
@@ -399,6 +400,14 @@ def get_settings(conf_file_leafname, election_app=None, tests=False):
             'DEFAULT_PERMISSION_CLASSES': ('candidates.api_permissions.ReadOnly',),
             'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.URLPathVersioning',
             'PAGE_SIZE': 10,
+        },
+
+        'HAYSTACK_CONNECTIONS': {
+            'default': {
+                'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+                'URL': 'http://127.0.0.1:9200/',
+                'INDEX_NAME': 'yournextrepresentative',
+            },
         },
     }
     if not conf.get('NEW_ACCOUNTS_ALLOWED', True):
