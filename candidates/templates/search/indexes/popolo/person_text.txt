@@ -1,1 +1,4 @@
 {{ object.name }}
+{{ object.given_name }}
+{{ object.family_name }}
+{{ object.additional_name }}
