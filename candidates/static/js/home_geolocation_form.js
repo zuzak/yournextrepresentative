@@ -1,5 +1,8 @@
 var constructGeolocationLink = function constructGeolocationLink($wrapper){
-    var geolocationIsSupported = true;
+    var geolocationIsSupported = false;
+    if ("geolocation" in navigator) {
+        geolocationIsSupported = true;
+    }
 
     if(geolocationIsSupported) {
         var t1 = $wrapper.attr('data-link-text') || 'Use my current location';
@@ -7,10 +10,17 @@ var constructGeolocationLink = function constructGeolocationLink($wrapper){
 
         var $a = $('<a>').text(t1).addClass('geolocation-link');
         $a.on('click', function(){
+            var that = this;
             $(this).text(t2);
-            setTimeout(function(){
-                window.location.reload();
-            }, 2000);
+            navigator.geolocation.getCurrentPosition(function(position) {
+              $.getJSON(
+                  '/geolocator/' + position.coords.latitude + ',' + position.coords.longitude,
+                  function ( data ) {
+                    if ( data['error'] ) {
+                      $(that).text(data['error']);
+                    }
+                  });
+            });
         })
         $a.appendTo($wrapper);
     }

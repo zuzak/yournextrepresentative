@@ -204,6 +204,11 @@ patterns_to_format = [
         'pattern': r'^upcoming-elections',
         'view': views.UpcomingElectionsView.as_view(),
         'name': 'upcoming-elections'
+    },
+    {
+        'pattern': r'^geolocator/(?P<latitude>[\d.\-]+),(?P<longitude>[\d.\-]+)',
+        'view': views.GeoLocatorView.as_view(),
+        'name': 'geolocator'
     }
 ]
 
