@@ -91,6 +91,10 @@ class Command(BaseCommand):
         election_date = election_dict['poll_open_date']
 
         current = election_dict['current']
+        party_lists_in_use = False
+        if election_dict['voting_system']:
+            party_lists_in_use \
+                = election_dict['voting_system']['uses_party_lists']
 
         return Election.objects.update_or_create(
             slug=election_id,
@@ -101,8 +105,7 @@ class Command(BaseCommand):
                 "for_post_role": election_dict['election_type']['name'],
                 "candidate_membership_role": "Candidate",
                 "show_official_documents": True,
-                "party_lists_in_use":
-                    election_dict['voting_system']['uses_party_lists'],
+                "party_lists_in_use": party_lists_in_use,
             }
         )[0]
 
