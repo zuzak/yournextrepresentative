@@ -92,6 +92,7 @@ class Command(BaseCommand):
                     old_screen_name=screen_name,
                     correct_screen_name=correct_screen_name
                 ))
+
                 person.contact_details.update_or_create(
                     contact_type='twitter',
                     defaults={'value': correct_screen_name},
