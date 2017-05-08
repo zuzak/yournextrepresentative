@@ -35,7 +35,7 @@
                 {% else %}
                   <img class="person-avatar" src="{% static 'candidates/img/blank-man.png' %}"/>
                 {% endif %}
-                <div class="person-name-and-party">
+                <div class="person-name-and-party {% if form.q.value == result.object.name %}highlight-result{% endif %}">
                   <a href="{% url 'person-view' result.object.id result.object.name|slugify %}" class="candidate-name">{{ result.object.name }}</a>
                   <span class="party">{{ result.object.extra.last_party }}</span>
                 </div>
