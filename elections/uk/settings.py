@@ -25,6 +25,11 @@ PEOPLE_LIABLE_TO_VANDALISM = {
 
     34605, # Matt Furey-King (due to a vandalism incident)
 
+    1528, # Janus Polenceus
+    25402, # Giles Game
+
+    4230, # Craig Mackinlay
+
     # Below we include the person ID of anyone who is currently a minister.
     # This list was generated from:
     #
